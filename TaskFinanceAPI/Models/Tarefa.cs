@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskFinanceAPI.Models
 {
     public class Tarefa
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required (ErrorMessage = "O nome da Tarefa deve ser informado.")]
         [StringLength(100,ErrorMessage = "O nome da Tarefa pode ter no máximo 100 caracteres ")]

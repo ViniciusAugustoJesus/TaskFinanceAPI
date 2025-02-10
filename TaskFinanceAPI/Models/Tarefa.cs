@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace TaskFinanceAPI.Models
 {
@@ -8,8 +9,8 @@ namespace TaskFinanceAPI.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required (ErrorMessage = "O nome da Tarefa deve ser informado.")]
-        [StringLength(100,ErrorMessage = "O nome da Tarefa pode ter no máximo 100 caracteres ")]
+        [Required(ErrorMessage = "O nome da Tarefa deve ser informado.")]
+        [StringLength(100, ErrorMessage = "O nome da Tarefa pode ter no máximo 100 caracteres ")]
         public string Nome { get; set; }
         [Required(ErrorMessage = "A descrição da Tarefa deve ser informado.")]
         [StringLength(200, ErrorMessage = "A descrição da Tarefa pode ter no máximo 200 caracteres ")]
@@ -19,6 +20,7 @@ namespace TaskFinanceAPI.Models
         public double Valor { get; set; }
         public bool Concluida { get; set; }
         public int IdUsuario { get; set; }
+        [JsonIgnore]
         public Usuario Usuario { get; set; }
     }
 }

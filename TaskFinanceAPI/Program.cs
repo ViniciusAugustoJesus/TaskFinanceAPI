@@ -1,5 +1,5 @@
-using TaskFinanceAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using TaskFinanceAPI.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);

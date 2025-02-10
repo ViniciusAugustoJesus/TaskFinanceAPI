@@ -87,11 +87,11 @@ namespace TaskFinanceAPI.Controllers
                 return NotFound();
             }
 
-            tarefaExistente .Nome = tarefaDto.Nome;
-            tarefaExistente .Descricao = tarefaDto.Descricao;
-            tarefaExistente .Valor = tarefaDto.Valor;
-            tarefaExistente .Concluida = tarefaDto.Concluida;
-            tarefaExistente .IdUsuario = tarefaDto.IdUsuario;
+            tarefaExistente.Nome = tarefaDto.Nome;
+            tarefaExistente.Descricao = tarefaDto.Descricao;
+            tarefaExistente.Valor = tarefaDto.Valor;
+            tarefaExistente.Concluida = tarefaDto.Concluida;
+            tarefaExistente.IdUsuario = tarefaDto.IdUsuario;
 
             try
             {

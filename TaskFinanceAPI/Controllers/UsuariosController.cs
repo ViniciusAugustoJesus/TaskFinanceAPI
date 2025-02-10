@@ -2,6 +2,7 @@
 using TaskFinanceAPI.Data;
 using TaskFinanceAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using TaskFinanceAPI.DTOs;
 
 namespace TaskFinanceAPI.Controllers
 {
@@ -33,12 +34,18 @@ namespace TaskFinanceAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Usuario> PostUser(Usuario user)
+        public ActionResult<Usuario> PostUser([FromBody]UsuarioDTO userDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            var user = new Usuario
+            {
+                Nome = userDTO.Nome,
+                Saldo = userDTO.Saldo,
+            };
 
             _context.Add(user);
             _context.SaveChanges();
@@ -47,19 +54,23 @@ namespace TaskFinanceAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutUser(int id, Usuario user)
+        public IActionResult PutUser(int id, [FromBody] UsuarioDTO userDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != user.Id)
+            
+            if (userDTO == null)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            var userExistente = _context.Usuarios.Find(id);
+
+            if (userExistente == null)
+            {
+                return NotFound();
+            }
+
+            userExistente.Nome = userDTO.Nome;
+            userExistente.Saldo = userDTO.Saldo;
 
             try
             {

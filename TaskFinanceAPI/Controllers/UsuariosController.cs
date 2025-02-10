@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaskFinanceAPI.Data;
-using TaskFinanceAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using TaskFinanceAPI.Data;
 using TaskFinanceAPI.DTOs;
+using TaskFinanceAPI.Models;
 
 namespace TaskFinanceAPI.Controllers
 {
@@ -12,8 +12,8 @@ namespace TaskFinanceAPI.Controllers
     {
         private readonly AppDbContext _context;
         public UsuariosController(AppDbContext context) { _context = context; }
-        
-        
+
+
         [HttpGet]
         public ActionResult<IEnumerable<Usuario>> GetUsers()
         {
@@ -24,6 +24,7 @@ namespace TaskFinanceAPI.Controllers
         public ActionResult<Usuario> GetUser(int id)
         {
             var user = _context.Usuarios.Find(id);
+            user.Tarefas = _context.Tarefas.Where(t => t.IdUsuario == id).ToList();
 
             if (user == null)
             {
@@ -34,7 +35,7 @@ namespace TaskFinanceAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Usuario> PostUser([FromBody]UsuarioDTO userDTO)
+        public ActionResult<Usuario> PostUser([FromBody] UsuarioDTO userDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -56,7 +57,7 @@ namespace TaskFinanceAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult PutUser(int id, [FromBody] UsuarioDTO userDTO)
         {
-            
+
             if (userDTO == null)
             {
                 return BadRequest();

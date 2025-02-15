@@ -17,10 +17,18 @@ namespace TaskFinanceAPI.Models
         public string Descricao { get; set; }
         public DateTime Data { get; set; } = DateTime.Now;
         [Required(ErrorMessage = "O valor da Tarefa deve ser informado.")]
+        [Range(0, double.MaxValue, ErrorMessage = "O valor da Tarefa deve ser maior que zero.")]
         public double Valor { get; set; }
-        public bool Concluida { get; set; }
+        public StatusTarefa Status { get; set; } = StatusTarefa.Pendente;
+        [ForeignKey("Usuario")]
         public int IdUsuario { get; set; }
         [JsonIgnore]
         public Usuario Usuario { get; set; }
+    }
+
+    public enum StatusTarefa
+    {
+        Pendente,
+        Concluida
     }
 }

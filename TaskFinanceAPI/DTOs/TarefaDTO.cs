@@ -1,4 +1,6 @@
-﻿namespace TaskFinanceAPI.DTOs
+﻿using TaskFinanceAPI.Models;
+
+namespace TaskFinanceAPI.DTOs
 {
     public class TarefaDTO
     {
@@ -6,6 +8,6 @@
         public string Descricao { get; set; }
         public double Valor { get; set; }
         public int IdUsuario { get; set; }
-        public bool Concluida { get; set; }
+        public StatusTarefa Status { get; set; }
     }
 }

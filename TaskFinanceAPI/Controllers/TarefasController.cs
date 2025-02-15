@@ -53,7 +53,7 @@ namespace TaskFinanceAPI.Controllers
                 Nome = tarefaDto.Nome,
                 Descricao = tarefaDto.Descricao,
                 Valor = tarefaDto.Valor,
-                Concluida = tarefaDto.Concluida,
+                Status = tarefaDto.Status,
                 IdUsuario = tarefaDto.IdUsuario,
             };
 
@@ -90,7 +90,7 @@ namespace TaskFinanceAPI.Controllers
             tarefaExistente.Nome = tarefaDto.Nome;
             tarefaExistente.Descricao = tarefaDto.Descricao;
             tarefaExistente.Valor = tarefaDto.Valor;
-            tarefaExistente.Concluida = tarefaDto.Concluida;
+            tarefaExistente.Status = tarefaDto.Status;
             tarefaExistente.IdUsuario = tarefaDto.IdUsuario;
 
             try
